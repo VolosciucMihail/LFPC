@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"compiler/lexer"
 	"fmt"
-	"go/token"
+	"compiler/grammar"
 	"io"
 )
 

@@ -2,11 +2,23 @@ package main
 
 import (
 	"fmt"
-	"go/reader"
 	"os"
+	"os/user"
+	"compiler/reader"
+
 )
 
-func main() {
-	fmt.Printf("Type in commands\n")
-	reader.Start(os.Stdin, os.Stdout)
+func main(){
+	
+	user, err := user.Current()
+
+	if err != nil{
+		panic(err)
+	}
+
+	fmt.Printf("Please type the command \n")
+
+	repl.Start(os.Stdin,os.Stdout)
+
+
 }

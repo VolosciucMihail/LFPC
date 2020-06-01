@@ -5,9 +5,9 @@ import "compiler/grammar"
 type Lexer struct{
 	
 	input string
-	position int//current position 
-	readPosition int//to read next char of after input
-	ch byte//points to char in input
+	position int
+	readPosition int
+	ch byte
 }
 
 
@@ -16,10 +16,8 @@ func New(input string) *Lexer{
 	lexer := &Lexer{input : input}
 	lexer.readChar()
 	return lexer
-
 }
 
-//check if the tokens exist,default it try to chekc if its a identifier else return null;
 func (lexer *Lexer) NextToken() token.Token{
 	
 	var tok token.Token
@@ -48,7 +46,6 @@ func (lexer *Lexer) NextToken() token.Token{
 		case ';':
 			tok = newToken(token.SEMICOLON, lexer.ch)
 
-
 		case '=':
 			if lexer.peekChar()=='='{
 				ch := lexer.ch
@@ -75,8 +72,6 @@ func (lexer *Lexer) NextToken() token.Token{
 		
 			}
 		
-
-		
 		case '-':
 			if lexer.peekChar() == '='{
 				ch := lexer.ch
@@ -92,8 +87,6 @@ func (lexer *Lexer) NextToken() token.Token{
 			
 			}
 			
-		
-
 		case '*':
 			if lexer.peekChar() == '='{
 				ch := lexer.ch
@@ -104,7 +97,6 @@ func (lexer *Lexer) NextToken() token.Token{
 			}
 		
 			
-		
 		case '/':
 			if lexer.peekChar() == '='{
 				ch := lexer.ch
@@ -115,7 +107,6 @@ func (lexer *Lexer) NextToken() token.Token{
 			}
 		
 			
-
 		case ',':
 			tok = newToken(token.COMMA,lexer.ch)
 
@@ -157,13 +148,11 @@ func (lexer *Lexer) NextToken() token.Token{
 			if lexer.peekChar() == '='{
 				ch := lexer.ch
 				lexer.readChar()
-				tok = token.Token{Type : token.POWER_EQ, Value : string(ch) + string(lexer.ch)}
+				tok = token.Token{Type : token.POW_EQ, Value : string(ch) + string(lexer.ch)}
 			}else{
-				tok = newToken(token.POWER,lexer.ch)
+				tok = newToken(token.POW,lexer.ch)
 			}
 
-		
-		
 		case 0:
 			tok.Value = ""
 			tok.Type = token.EOF		
@@ -194,14 +183,10 @@ func (lexer *Lexer) NextToken() token.Token{
 }
 
 
-
-//function to create tokens
 func newToken(tokenType token.TokenType,ch byte) token.Token{
 	return token.Token{Type:tokenType, Value:string(ch)}
 }
 
-
-//read Identifier
 func(lexer *Lexer) readIdentifier() string{
 	
 	position := lexer.position
@@ -212,8 +197,6 @@ func(lexer *Lexer) readIdentifier() string{
 
 	return lexer.input[position : lexer.position]
 }
-
-//check if it is a letter;
 
 
 func(lexer *Lexer) skipWhitespace(){
@@ -237,13 +220,10 @@ func (lexer *Lexer) readNumber() string{
 
 }
 
-//check if character if a digit
 func isDigit(ch byte) bool {
 	return '0'<=ch && ch <='9'
 }
-
-//helper function to work with operators like !=,==,-= etc
-//help us to identify difference between a single sign and where is mroe then one char  
+ 
 func (lexer *Lexer) peekChar() byte{
 	
 	if lexer.readPosition >= len(lexer.input){
@@ -258,7 +238,6 @@ func (lexer *Lexer) peekChar() byte{
 
 }
 
-//read input string and iterate over it to check if its null otherwise iterate over input;
 func (lexer *Lexer) readChar(){
 	
 	if lexer.readPosition >= len(lexer.input){

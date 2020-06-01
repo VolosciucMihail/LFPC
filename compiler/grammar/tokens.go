@@ -10,41 +10,40 @@ type Token struct{
 const (
 	
 	EOF = "EOF"
-	ILLEGAL ="ILLEGAL"//illegal token
-	SEMICOLON = ";"
-	
-	LBRACKET ="["//left bracket
+	ILLEGAL ="ILLEGAL"
+
+	LBRACKET ="["
 	RBRACKET ="]"
 	LBRACE = "{"
     RBRACE = "}"
 	LPAREN = "("
 	RPAREN = ")"
 	
-    EQ  = "==" //equal sign
-	PL_EQ = "+="  //plus equal
-    MI_EQ  = "-= "//minus equal
-	PP = "++"  //plus plus
-    MM = "--" //minus minus
-    NE = "!=" //not equal
+    EQ  = "==" 
+	PL_EQ = "+="  
+    MI_EQ  = "-= "
+	PP = "++" 
+    MM = "--"
+    NE = "!="
 	MULT_EQ = "*="
 	DEVIDE_EQ = "/="
-	POWER_EQ = "*="
-
-    AND = "&& "// and &&
-    OR = "||"  //or ||
+	POW_EQ = "^="
 	
-    IF = "if"//if
-    ELSE = "else"//else
+    AND = "&& "
+    OR = "||" 
+	
+    IF = "if"
+    ELSE = "else"
    
-	FOR  = "for"//for
-    WHILE = "while"//while
-    FOREACH  = "foreach"//for each
+	FOR  = "for"
+    WHILE = "while"
+    FOREACH  = "foreach"
 	
 	TRUE = "true"
 	FALSE = "false"
 
-
-	FUNCTION = "FUNCTION"//function
+	FUNCTION = "FUNCTION"
+	LET = "LET"
 
 	ASIGN = "="
 	PLUS = "+"
@@ -52,7 +51,11 @@ const (
 	MULTIPLY = "*"
 	DIVISION = "/"
 	NOT = "!"
-	POWER = "^"
+	POW = "^"
+	SMALLER = "<"
+	BIGGER = ">"
+	SMALL_EQ = "<="
+	BIG_EQ = ">="
 
 	IDENT = "IDENT"
 	INT = "INT"
@@ -61,11 +64,8 @@ const (
 	
 	COMMA = ","
 	DOT = "."
+	SEMICOLON = ";"
 
-	SMALLER = "<"
-	BIGGER = ">"
-	SMALLEREQUAL = "<="
-	BIGGEREQUAL = ">="
 )
 
 var keywords = map[string]TokenType{
